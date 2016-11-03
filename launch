@@ -1,0 +1,4 @@
+FILENAME=$1
+OFFSET_FILE="$FILENAME.offset"
+N=$(<"$OFFSET_FILE")
+tail -f +$N "$FILENAME" | { ./p --offset-out $OFFSET_FILE; pkill -P$$ tail; }
